@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="BezierCircle" >
+        <attr name="visible_count" format="integer"/>
+        <attr name="circle_color" format="color"/>
+    </declare-styleable>
+
+</resources>
