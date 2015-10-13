@@ -13,6 +13,7 @@ import android.view.View;
  * Created by littleming on 10/12/15.
  */
 public class BezierCircle extends View {
+    //the number to draw a similar circle
     public static final float MAGIC_NUMBER = 0.551915024494f;
     public static final int DEFAULT_COLOR = Color.BLUE;
     public static final int DEFAULT_VISIBLE_COUNT = 4;
@@ -83,6 +84,7 @@ public class BezierCircle extends View {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         if(notMeasure){
+            //if the value has init, do not set them again
             return;
         }
         int width = getMeasuredWidth() - getPaddingLeft() - getPaddingRight();
@@ -94,6 +96,7 @@ public class BezierCircle extends View {
         radius = height / 2;
         maxStretch = radius;
 
+        //init the value
         leftPoint.x = leftPoint.initX = centerPoint.x - radius;
         leftPoint.y = leftPoint.initY = centerPoint.y;
 
