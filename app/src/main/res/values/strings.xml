@@ -1,4 +1,7 @@
 <resources>
     <string name="app_name">BezierCircleIndicator</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_indicator">IndicatorActivity</string>
+    <string name="title_activity_image_indicator">ImageIndicatorActivity</string>
+    <string name="title_activity_text_with_image">TextWithImageActivity</string>
 </resources>

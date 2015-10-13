@@ -2,8 +2,13 @@
 <resources>
 
     <declare-styleable name="BezierCircle" >
-        <attr name="visible_count" format="integer"/>
-        <attr name="circle_color" format="color"/>
+        <attr name="bc_visible_count" format="integer"/>
+        <attr name="bc_circle_color" format="color"/>
+    </declare-styleable>
+
+    <declare-styleable name="BezierIndicator">
+        <attr name="bi_visible_count" format="integer"/>
+        <attr name="bi_circle_color" format="color"/>
     </declare-styleable>
 
 </resources>

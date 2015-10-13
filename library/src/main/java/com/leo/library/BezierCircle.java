@@ -15,7 +15,7 @@ import android.view.View;
 public class BezierCircle extends View {
     public static final float MAGIC_NUMBER = 0.551915024494f;
     public static final int DEFAULT_COLOR = Color.BLUE;
-    public static final int DEFAULT_VISIBLE_COUNT = 3;
+    public static final int DEFAULT_VISIBLE_COUNT = 4;
 
     private int circleColor;
 
@@ -34,6 +34,8 @@ public class BezierCircle extends View {
 
     public BezierCircle(Context context) {
         super(context);
+        circleColor = DEFAULT_COLOR;
+        visibleCount = DEFAULT_VISIBLE_COUNT;
         init();
     }
 
@@ -51,8 +53,8 @@ public class BezierCircle extends View {
 
     private void initAttrs(Context context, AttributeSet attrs){
         final TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.BezierCircle, 0, 0);
-        visibleCount = a.getInteger(R.styleable.BezierCircle_visible_count, DEFAULT_VISIBLE_COUNT);
-        circleColor = a.getColor(R.styleable.BezierCircle_circle_color, DEFAULT_COLOR);
+        visibleCount = a.getInteger(R.styleable.BezierCircle_bc_visible_count, DEFAULT_VISIBLE_COUNT);
+        circleColor = a.getColor(R.styleable.BezierCircle_bc_circle_color, DEFAULT_COLOR);
         a.recycle();
     }
 
@@ -183,6 +185,20 @@ public class BezierCircle extends View {
         rightPoint.transX(preD + perWidth, 0);
         topPoint.x = rightPoint.x - radius;
         bottomPoint.x = rightPoint.x - radius;
+    }
+
+    public void setCircleColor(int circleColor) {
+        this.circleColor = circleColor;
+        paint.setColor(circleColor);
+    }
+
+    public void setVisibleCount(int visibleCount) {
+        this.visibleCount = visibleCount;
+    }
+
+    public void refresh(){
+        notMeasure = false;
+        BezierCircle.this.invalidate();
     }
 
     class Point {
