@@ -19,6 +19,7 @@ public class BezierIndicator extends RelativeLayout{
     private LinearLayout tabs;
     private int circleColor = BezierCircle.DEFAULT_COLOR;
     private OnItemSelectedListener onItemSelectedListener;
+    private float lastOffset = 0;
 
     public BezierIndicator(Context context) {
         super(context);
@@ -86,7 +87,13 @@ public class BezierIndicator extends RelativeLayout{
     }
 
     public void transfer(int position, float offset){
-        bezierCircle.transfer(offset, position);
+        bezierCircle.transfer(offset, position, getDirection(offset));
+    }
+
+    private int getDirection(float offset){
+        int direction = offset > lastOffset ? BezierCircle.DIRECTION_RIGHT : BezierCircle.DIRECTION_LEFT;
+        lastOffset = offset;
+        return direction;
     }
 
     public void setCircleColor(int color){

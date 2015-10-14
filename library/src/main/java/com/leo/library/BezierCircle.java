@@ -17,6 +17,8 @@ public class BezierCircle extends View {
     public static final float MAGIC_NUMBER = 0.551915024494f;
     public static final int DEFAULT_COLOR = Color.BLUE;
     public static final int DEFAULT_VISIBLE_COUNT = 4;
+    public static final int DIRECTION_LEFT = 1;
+    public static final int DIRECTION_RIGHT = 2;
 
     private int circleColor;
 
@@ -128,7 +130,7 @@ public class BezierCircle extends View {
         path.cubicTo(bottomPoint.x - stretch, bottomPoint.y, leftPoint.x, leftPoint.y + stretch, leftPoint.x, leftPoint.y);
     }
 
-    public void transfer(float offset, int position){
+    public void transfer(float offset, int position, int direction){
         notMeasure = true;
         int preDistance = position * perWidth;
         if(offset >= 0.0f && offset <= 0.2f){
@@ -136,7 +138,7 @@ public class BezierCircle extends View {
         }else if(offset > 0.2f && offset <= 0.4f){
             step2(offset - 0.2f, preDistance);
         }else if(offset > 0.4f && offset <= 0.6f){
-            step3(offset - 0.4f, preDistance);
+            step3(offset - 0.4f, preDistance, direction);
         }else if(offset > 0.6f && offset <= 0.8f){
             step4(offset - 0.6f, preDistance);
         }else if(offset > 0.8f && offset <= 1.0f){
@@ -144,48 +146,48 @@ public class BezierCircle extends View {
         }
 
         drawPath();
-
         BezierCircle.this.invalidate();
     }
 
-    private float calculateStretchLength(float offset){
+    private float calculateHorStretchLength(float offset){
         return offset * maxStretch * 2;
     }
 
     private void step1(float offset, float preD){
         leftPoint.transX(preD, 0);
-        rightPoint.x = leftPoint.x + radius * 2 + calculateStretchLength(offset);
+        rightPoint.x = leftPoint.x + radius * 2 + calculateHorStretchLength(offset);
         topPoint.x = leftPoint.x + radius;
         bottomPoint.x = leftPoint.x + radius;
     }
 
     private void step2(float offset, float preD){
         leftPoint.transX(preD, 0);
-        rightPoint.x = leftPoint.x + radius * 2 + calculateStretchLength(0.2f) + calculateStretchLength(offset);
-        topPoint.x = leftPoint.x + radius + calculateStretchLength(offset);
-        bottomPoint.x = leftPoint.x + radius + calculateStretchLength(offset);
+        rightPoint.x = leftPoint.x + radius * 2 + calculateHorStretchLength(0.2f) + calculateHorStretchLength(offset) / 4;
+        topPoint.x = leftPoint.x + radius + calculateHorStretchLength(offset) / 4;
+        bottomPoint.x = leftPoint.x + radius + calculateHorStretchLength(offset) / 4;
     }
 
-    private void step3(float offset, float preD){
-        float maxTransLength = perWidth - calculateStretchLength(0.2f) * 2;
+    private void step3(float offset, float preD, int direction){
+        float maxTransLength = perWidth - calculateHorStretchLength(0.2f) - calculateHorStretchLength(0.2f) / 4;
         leftPoint.transX(offset / 0.2f * maxTransLength + preD, 0);
-        rightPoint.x = leftPoint.x + radius * 2 + calculateStretchLength(0.2f) * 2;
-        topPoint.x = leftPoint.x + radius + calculateStretchLength(0.2f);
-        bottomPoint.x = leftPoint.x + radius + calculateStretchLength(0.2f);
+        rightPoint.x = leftPoint.x + radius * 2 + calculateHorStretchLength(0.2f) + calculateHorStretchLength(0.2f) / 4;
+        topPoint.x = leftPoint.x + radius + calculateHorStretchLength(0.2f) / 4;
+        bottomPoint.x = leftPoint.x + radius + calculateHorStretchLength(0.2f) / 4;
+        float verPointTransLength = (calculateHorStretchLength(0.2f) + calculateHorStretchLength(0.2f) / 4) / 2;
+        topPoint.x += offset / 0.2f * verPointTransLength;
+        bottomPoint.x += offset / 0.2f * verPointTransLength;
     }
 
     private void step4(float offset, float preD){
-        float maxTransLength = perWidth - calculateStretchLength(0.2f) * 2;
-        leftPoint.transX(preD + maxTransLength + calculateStretchLength(offset), 0);
         rightPoint.transX(preD + perWidth, 0);
-        topPoint.x = rightPoint.x - radius - calculateStretchLength(0.2f - offset);
-        bottomPoint.x = rightPoint.x - radius - calculateStretchLength(0.2f - offset);
+        leftPoint.x = rightPoint.x - radius * 2 - calculateHorStretchLength(0.2f) - calculateHorStretchLength(0.2f - offset) / 4;
+        topPoint.x = rightPoint.x - radius - calculateHorStretchLength(0.2f - offset) / 4;
+        bottomPoint.x = rightPoint.x - radius - calculateHorStretchLength(0.2f - offset) / 4;
     }
 
     private void step5(float offset, float preD){
-        float maxTransLength = perWidth - calculateStretchLength(0.2f) * 2;
-        leftPoint.transX(preD + maxTransLength + calculateStretchLength(0.2f) + calculateStretchLength(offset), 0);
         rightPoint.transX(preD + perWidth, 0);
+        leftPoint.x = rightPoint.x - 2 * radius - calculateHorStretchLength(0.2f - offset);
         topPoint.x = rightPoint.x - radius;
         bottomPoint.x = rightPoint.x - radius;
     }

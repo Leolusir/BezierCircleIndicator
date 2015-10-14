@@ -3,7 +3,7 @@
 Pager indicator with a magic circle based on bezier curve
 
 ## Sample
-![image](https://github.com/Leolusir/BezierCircleIndicator/tree/master/gif/preview.gif)
+Click [here](https://github.com/Leolusir/BezierCircleIndicator/tree/master/gif/sample.gif) to see gif
 
 ## How to use
 
