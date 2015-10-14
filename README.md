@@ -42,6 +42,7 @@ only text
 
 ![image](https://github.com/Leolusir/BezierCircleIndicator/tree/master/image/1.png)
 
+
 ```
     List<TabItem> tabItems = new ArrayList<>();
         for(int i = 0; i < 4; i++){
@@ -58,6 +59,7 @@ only image
 
 ![image](https://github.com/Leolusir/BezierCircleIndicator/tree/master/image/2.png)
 
+
 ```
     //for example
     int[] resIds = {R.drawable.poker_face, R.drawable.joker_face, R.drawable.faker_face, R.drawable.arker_face};
@@ -73,6 +75,7 @@ only image
 image with text
 
 ![image](https://github.com/Leolusir/BezierCircleIndicator/tree/master/image/3.png)
+
 
 ```
     //for example
