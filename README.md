@@ -3,7 +3,7 @@
 Pager indicator with a magic circle based on bezier curve
 
 ## Sample
-Click [here](https://github.com/Leolusir/BezierCircleIndicator/tree/master/gif/sample.gif) to see gif
+![image](https://github.com/Leolusir/BezierCircleIndicator/tree/master/gif/sample.gif)
 
 ## How to use
 
@@ -40,7 +40,7 @@ in java
 
 only text 
 
-![image](https://github.com/Leolusir/BezierCircleIndicator/tree/master/image/1.png)
+![image](https://raw.githubusercontent.com/Leolusir/BezierCircleIndicator/master/image/1.png)
 
 
 ```
@@ -57,7 +57,7 @@ only text
 
 only image 
 
-![image](https://github.com/Leolusir/BezierCircleIndicator/tree/master/image/2.png)
+![image](https://raw.githubusercontent.com/Leolusir/BezierCircleIndicator/master/image/2.png)
 
 
 ```
@@ -74,7 +74,7 @@ only image
 
 image with text
 
-![image](https://github.com/Leolusir/BezierCircleIndicator/tree/master/image/3.png)
+![image](https://raw.githubusercontent.com/Leolusir/BezierCircleIndicator/master/image/3.png)
 
 
 ```
